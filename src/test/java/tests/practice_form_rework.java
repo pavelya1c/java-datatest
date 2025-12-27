@@ -6,25 +6,30 @@ import tests.TestBase;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-
+import static utils.RandomUtils.getRandomEmail;
+import static utils.RandomUtils.getRandomString;
 
 
 public class practice_form_rework extends TestBase {
 
     @Test
     void formTestRework() {
+        String firstName = getRandomString(8);
+        String lastName = "Yatmanov";
+        String userEmail = getRandomEmail("gmail", ".com");
+        String userNumber = "9999999999";
 
 
         open("/automation-practice-form");
 
 
-        $("#firstName").setValue("Pavel");
-        $("#lastName").setValue("Yatmanov");
-        $("#userEmail").setValue("yatmanov@qa_guru_39.com");
+        $("#firstName").setValue(firstName);
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue(userEmail);
 
 
         $("#genterWrapper").$(byText("Male")).click();
-        $("#userNumber").setValue("9999999999");
+        $("#userNumber").setValue(userNumber);
 
 
         $(".react-datepicker__input-container").click();
