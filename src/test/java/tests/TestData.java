@@ -4,27 +4,26 @@ import com.github.javafaker.Faker;
 
 import static utils.RandomUtils.*;
 import com.github.javafaker.Faker;
+import utils.RandomUtils;
 
 public class TestData {
-    static Faker faker = new Faker();
 
+    Faker faker = new Faker();
 
-    static String firstName = faker.name().firstName();
-    static String lastName = faker.name().lastName();
-    static String userEmail = getRandomEmail("@gmail" ,".com");
-    static String userAdress = faker.address().fullAddress();
-    static String userNumber = getRandomRusNumberString();
-    static String userGender = getRandomGenders();
-    static String userHobbies = getRandomHobbiest();
-    static String userState = getRandomState();
-    static String userCity = getRandomCityFaker(userState);
-    static String userCalendarMounth = getRandomMounth();
-    static String userCalendarDay = getRandomDayFaker();
-    static String userCalendarYear = getRandomYear();
-    static String userSubjects = getSubjects();
-    static String userRandomPicture = getRandomPicture();
-
-//Maths Accounting Arts Social Studies
+       String firstName = faker.name().firstName();
+       String lastName = faker.name().lastName();
+       String userEmail = getRandomEmail("@gmail" ,".com");
+       String userAdress = faker.address().fullAddress();
+     public  String userNumber = getRandomRusNumberString();
+     public  String userGender = getRandomGenders();
+     public  String userHobbies = getRandomHobbiest();
+     public  String userState = getRandomState();
+     public  String userCity = getRandomCity(userState);
+     public  String userCalendarMounth = getRandomMounth();
+     public  String userCalendarDay = getRandomDay();
+     public  String userCalendarYear = getRandomYear();
+     public  String userSubjects = getSubjects();
+     public  String userRandomPicture = getRandomPicture();
 
 
 }

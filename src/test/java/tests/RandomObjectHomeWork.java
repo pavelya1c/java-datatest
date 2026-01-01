@@ -10,45 +10,42 @@ public class RandomObjectHomeWork extends TestBase {
 
 
     tests.pages.FormPage formPage = new tests.pages.FormPage();
-    Faker faker = new Faker();
+    TestData testData = new TestData();
+
 
     @Test
     void formTestRework() {
 
-//String firstNameFaker = faker.name().firstName();
-//String lastNameFaker = faker.name().lastName();
-
-
 
 //С Заполнением всех полей
        formPage .openUrl()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(userEmail)
-                .setGenterWrapper(userGender)
-                .setUserNumber(userNumber)
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setEmail(testData.userEmail)
+                .setGenterWrapper(testData.userGender)
+                .setUserNumber(testData.userNumber)
                 .setCalendat()
-                .setDateOfBirth(userCalendarDay, userCalendarMounth, userCalendarYear)
-                .setSubjectSendKeys("a", userSubjects)
-                .setHobbies(userHobbies)
-                .setPictureInput(userRandomPicture)
-                .currentAddress(userAdress)
+                .setDateOfBirth(testData.userCalendarDay, testData.userCalendarMounth, testData.userCalendarYear)
+                .setSubjectSendKeys("a", testData.userSubjects)
+                .setHobbies(testData.userHobbies)
+                .setPictureInput(testData.userRandomPicture)
+                .currentAddress(testData.userAdress)
                 .scrollPage()
-                .setState(userState)
-                .setCity(userCity)
+                .setState(testData.userState)
+                .setCity(testData.userCity)
                 .setSubmit()
 
                 //Проверка
-                .checkResult(firstName, "Student name")
-                .checkResult(userEmail, "Email")
-                .checkResult(userGender, "Gender")
-                .checkResult(userNumber, "Mobile")
-                .checkResult(userCalendarDay + " " + userCalendarMounth + "," + userCalendarYear , "Date")
-                .checkResult(userSubjects, "Subjects")
-                .checkResult(userHobbies, "Hobbies")
-                .checkResult(userRandomPicture, "Picture")
-                .checkResult(userAdress, "Address")
-                .checkResult(userState + " " + userCity, "State and City");
+                .checkResult(testData.firstName, "Student name")
+                .checkResult(testData.userEmail, "Email")
+                .checkResult(testData.userGender, "Gender")
+                .checkResult(testData.userNumber, "Mobile")
+                .checkResult(testData.userCalendarDay + " " + testData.userCalendarMounth + "," + testData.userCalendarYear , "Date")
+                .checkResult(testData.userSubjects, "Subjects")
+                .checkResult(testData.userHobbies, "Hobbies")
+                .checkResult(testData.userRandomPicture, "Picture")
+                .checkResult(testData.userAdress, "Address")
+                .checkResult(testData.userState + " " + testData.userCity, "State and City");
 
     }
 
@@ -56,20 +53,20 @@ public class RandomObjectHomeWork extends TestBase {
 @Test
     void notAll (){
     formPage .openUrl()
-            .setFirstName(firstName)
-            .setLastName(lastName)
-            .setEmail(userEmail)
-            .setGenterWrapper(userGender)
-            .setUserNumber(userNumber)
-            .setHobbies(userHobbies)
+            .setFirstName(testData.firstName)
+            .setLastName(testData.lastName)
+            .setEmail(testData.userEmail)
+            .setGenterWrapper(testData.userGender)
+            .setUserNumber(testData.userNumber)
+            .setHobbies(testData.userHobbies)
             .scrollPage()
             .setSubmit()
 
             //Проверка
-            .checkResult(firstName, "Student name")
-            .checkResult(userEmail, "Email")
-            .checkResult(userGender, "Gender")
-            .checkResult(userNumber, "Mobile");
+            .checkResult(testData.firstName, "Student name")
+            .checkResult(testData.userEmail, "Email")
+            .checkResult(testData.userGender, "Gender")
+            .checkResult(testData.userNumber, "Mobile");
 
 }
 
@@ -77,20 +74,20 @@ public class RandomObjectHomeWork extends TestBase {
 @Test
     public void negativeTest(){
     formPage .openUrl()
-            .setFirstName(firstName)
-            .setLastName(lastName)
-            .setEmail(userEmail)
-            .setGenterWrapper(userGender)
-            .setUserNumber(userNumber)
+            .setFirstName(testData.firstName)
+            .setLastName(testData.lastName)
+            .setEmail(testData.userEmail)
+            .setGenterWrapper(testData.userGender)
+            .setUserNumber(testData.userNumber)
             .setCalendat()
-            .setDateOfBirth(userCalendarDay, userCalendarMounth, userCalendarYear)
-            .setSubjectSendKeys("a", userSubjects)
-            .setHobbies(userHobbies)
-            .setPictureInput(userRandomPicture)
-            .currentAddress(userAdress)
+            .setDateOfBirth(testData.userCalendarDay, testData.userCalendarMounth, testData.userCalendarYear)
+            .setSubjectSendKeys("a", testData.userSubjects)
+            .setHobbies(testData.userHobbies)
+            .setPictureInput(testData.userRandomPicture)
+            .currentAddress(testData.userAdress)
             .scrollPage()
-            .setState(userState)
-            .setCity(userCity)
+            .setState(testData.userState)
+            .setCity(testData.userCity)
             .setSubmit()
             .setModul();
 
