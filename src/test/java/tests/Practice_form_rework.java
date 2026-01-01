@@ -1,5 +1,3 @@
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import tests.TestBase;
 
@@ -10,7 +8,7 @@ import static utils.RandomUtils.getRandomEmail;
 import static utils.RandomUtils.getRandomString;
 
 
-public class practice_form_rework extends TestBase {
+public class Practice_form_rework extends TestBase {
 
     @Test
     void formTestRework() {
