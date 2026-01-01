@@ -10,10 +10,10 @@ public class TestData {
 
     Faker faker = new Faker();
 
-       String firstName = faker.name().firstName();
-       String lastName = faker.name().lastName();
-       String userEmail = getRandomEmail("@gmail" ,".com");
-       String userAdress = faker.address().fullAddress();
+     public  String firstName = faker.name().firstName();
+     public  String lastName = faker.name().lastName();
+     public  String userEmail = getRandomEmail("@gmail" ,".com");
+     public  String userAdress = faker.address().fullAddress();
      public  String userNumber = getRandomRusNumberString();
      public  String userGender = getRandomGenders();
      public  String userHobbies = getRandomHobbiest();
