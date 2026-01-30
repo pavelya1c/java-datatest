@@ -1,35 +1,40 @@
 package tests;
 
-import com.github.javafaker.Faker;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import tests.Data.Hobbies;
 
-import static utils.RandomUtils.*;
-
-import static tests.TestData.*;
+import java.util.stream.Stream;
 
 
-public class RandomObjectHomeWork extends TestBase {
+public class ParameterizedTestHomeWork extends TestBase {
 
 
     tests.pages.FormPage formPage = new tests.pages.FormPage();
     TestData testData = new TestData();
 
 
-
-    @Test
-    void formTestRework() {
-
-
+    @DisplayName("Отправка формы со всеми заполненными полями с выбором различного пола ")
+    @ValueSource(strings = {
+            "Female", "Male", "Other"
+    })
+    @ParameterizedTest(name = "Отправка формы с выбором gender {0}")
+    @Tag("Gendar")
+    void annyGendersTest(String gender) {
 
 //С Заполнением всех полей
        formPage .openUrl()
                 .setFirstName(testData.firstName)
                 .setLastName(testData.lastName)
                 .setEmail(testData.userEmail)
-                .setGenterWrapper(testData.userGender)
+                .setGenterWrapper(gender)
                 .setUserNumber(testData.userNumber)
                 .setCalendat()
                 .setDateOfBirth(testData.userCalendarDay, testData.userCalendarMounth, testData.userCalendarYear)
@@ -46,7 +51,7 @@ public class RandomObjectHomeWork extends TestBase {
                 //Проверка
                 .checkResult(testData.firstName, "Student name")
                 .checkResult(testData.userEmail, "Email")
-                .checkResult(testData.userGender, "Gender")
+                .checkResult(gender, "Gender")
                 .checkResult(testData.userNumber, "Mobile")
                 .checkResult(testData.userCalendarDay + " " + testData.userCalendarMounth + "," + testData.userCalendarYear , "Date")
                 .checkResult(testData.userSubjects, "Subjects")
@@ -58,15 +63,21 @@ public class RandomObjectHomeWork extends TestBase {
     }
 
 //Заполнены только обязательные поля
-@Test
-    void notAll (){
+
+
+
+    @DisplayName("Отправка формы с различными хобби")
+    @CsvFileSource(resources = "/test_data/Hobbies.csv")
+    @ParameterizedTest(name = "Отправка формы с выбором hobbies {0}")
+    @Tag("Hobbies")
+    void annyHobbiestTest (String hobbies){
     formPage .openUrl()
             .setFirstName(testData.firstName)
             .setLastName(testData.lastName)
             .setEmail(testData.userEmail)
             .setGenterWrapper(testData.userGender)
             .setUserNumber(testData.userNumber)
-            .setHobbies(testData.userHobbies)
+            .setHobbies(hobbies)
             .scrollPage()
             .setSubmit()
 
@@ -78,11 +89,30 @@ public class RandomObjectHomeWork extends TestBase {
 
 }
 
-//Негативный тест
-@Test
-    public void negativeTest(){
+
+
+    static Stream<Arguments> correspondenceFirstNameAndHobbiesTest(){
+        return Stream.of(
+                Arguments.of(
+                        "Angelina",
+                        String.valueOf(Hobbies.Sports)
+                ),
+                Arguments.of(
+                        "Marina",
+                        String.valueOf(Hobbies.Music)
+                ),
+                Arguments.of(
+                        "Julia",
+                        String.valueOf(Hobbies.Reading)
+                )
+        );
+    }
+    @DisplayName("Проверка соотвествия имени и хобби")
+    @MethodSource()
+    @ParameterizedTest(name = "Проверка соответствия выбора имени firstName = {0} и хобби hobbies = {1}")
+    public void correspondenceFirstNameAndHobbiesTest(String firstName, String hobbies){
     formPage .openUrl()
-            .setFirstName(testData.firstName)
+            .setFirstName(firstName)
             .setLastName(testData.lastName)
             .setEmail(testData.userEmail)
             .setGenterWrapper(testData.userGender)
@@ -90,7 +120,7 @@ public class RandomObjectHomeWork extends TestBase {
             .setCalendat()
             .setDateOfBirth(testData.userCalendarDay, testData.userCalendarMounth, testData.userCalendarYear)
             .setSubjectSendKeys("a", testData.userSubjects)
-            .setHobbies(testData.userHobbies)
+            .setHobbies(hobbies)
             .setPictureInput(testData.userRandomPicture)
             .currentAddress(testData.userAdress)
             .scrollPage()

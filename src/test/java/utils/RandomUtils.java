@@ -118,6 +118,15 @@ public class RandomUtils {
 
     }
 
+    public static String getRandomName(){
+       return faker.name().firstName();
+
+    }
+
+    public static String getRandomName2(){
+        return faker.name().lastName();
+    }
+
 
 }
 
