@@ -40,7 +40,7 @@ public class FormPage {
 
     //Первоначальные методы
     public FormPage openUrl() {
-        open("/automation-practice-form");
+        open("https://demoqa.com/automation-practice-form");
 
         return this;
     }

@@ -1,6 +1,8 @@
 package tests;
 
 
+import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,24 +16,30 @@ import tests.Data.Hobbies;
 import java.util.stream.Stream;
 
 
-public class ParameterizedTestHomeWork extends TestBase {
+public class ParameterizedTestHomeWork  {
 
 
     tests.pages.FormPage formPage = new tests.pages.FormPage();
     TestData testData = new TestData();
 
 
-    @DisplayName("Отправка формы со всеми заполненными полями с выбором различного пола ")
+    @BeforeEach
+    void precondition(){
+        Configuration.browserSize = "1920x1080";
+        formPage.openUrl();
+    }
+
+
     @ValueSource(strings = {
             "Female", "Male", "Other"
     })
-    @ParameterizedTest(name = "Отправка формы с выбором gender {0}")
+    @ParameterizedTest(name = "Проверка успешной регистрации с выбором Gender {0}")
     @Tag("Gendar")
-    void annyGendersTest(String gender) {
+    void chooseDifferentGenderTest(String gender) {
 
 //С Заполнением всех полей
-       formPage .openUrl()
-                .setFirstName(testData.firstName)
+
+        formPage.setFirstName(testData.firstName)
                 .setLastName(testData.lastName)
                 .setEmail(testData.userEmail)
                 .setGenterWrapper(gender)
@@ -66,13 +74,11 @@ public class ParameterizedTestHomeWork extends TestBase {
 
 
 
-    @DisplayName("Отправка формы с различными хобби")
     @CsvFileSource(resources = "/test_data/Hobbies.csv")
-    @ParameterizedTest(name = "Отправка формы с выбором hobbies {0}")
+    @ParameterizedTest(name = "Проверка успешной регистрации с выбором hobbies {0}")
     @Tag("Hobbies")
-    void annyHobbiestTest (String hobbies){
-    formPage .openUrl()
-            .setFirstName(testData.firstName)
+    void chooseDifferentHobbiesTest (String hobbies){
+    formPage.setFirstName(testData.firstName)
             .setLastName(testData.lastName)
             .setEmail(testData.userEmail)
             .setGenterWrapper(testData.userGender)
@@ -91,7 +97,7 @@ public class ParameterizedTestHomeWork extends TestBase {
 
 
 
-    static Stream<Arguments> correspondenceFirstNameAndHobbiesTest(){
+    static Stream<Arguments> chooseFirstNameAndHobbiesTest(){
         return Stream.of(
                 Arguments.of(
                         "Angelina",
@@ -107,12 +113,10 @@ public class ParameterizedTestHomeWork extends TestBase {
                 )
         );
     }
-    @DisplayName("Проверка соотвествия имени и хобби")
     @MethodSource()
-    @ParameterizedTest(name = "Проверка соответствия выбора имени firstName = {0} и хобби hobbies = {1}")
-    public void correspondenceFirstNameAndHobbiesTest(String firstName, String hobbies){
-    formPage .openUrl()
-            .setFirstName(firstName)
+    @ParameterizedTest(name = "Проверка соответствия выбора имени firstName = {0} и его hobbies = {1}")
+    public void chooseFirstNameAndHobbiesTest(String firstName, String hobbies){
+        formPage.setFirstName(firstName)
             .setLastName(testData.lastName)
             .setEmail(testData.userEmail)
             .setGenterWrapper(testData.userGender)
