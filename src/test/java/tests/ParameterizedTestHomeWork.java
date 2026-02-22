@@ -101,15 +101,15 @@ public class ParameterizedTestHomeWork {
         return Stream.of(
                 Arguments.of(
                         "Angelina",
-                        String.valueOf(Hobbies.Sports)
+                        String.valueOf(Hobbies.SPORTS)
                 ),
                 Arguments.of(
                         "Marina",
-                        String.valueOf(Hobbies.Music)
+                        String.valueOf(Hobbies.MUSIC)
                 ),
                 Arguments.of(
                         "Julia",
-                        String.valueOf(Hobbies.Reading)
+                        String.valueOf(Hobbies.READING)
                 )
         );
     }
