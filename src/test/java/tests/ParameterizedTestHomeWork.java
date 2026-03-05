@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import tests.Data.Hobbies;
+import tests.data.Hobbies;
 
 import java.util.stream.Stream;
 
@@ -27,7 +27,7 @@ public class ParameterizedTestHomeWork {
 
     @BeforeEach
     void precondition() {
-        Configuration.browserSize = "1920x1080";¬
+        Configuration.browserSize = "1920x1080";
         formPage.openUrl();
     }
 
